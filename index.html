@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>With Joy &amp; Vigor — $30K for Pancreatic Cancer Research at Penn</title>
+<meta name="description" content="One month. All of us. For my dad, and for every family that hears this diagnosis after ours.">
+
+<!-- Open Graph (texts, Instagram, LinkedIn, Facebook) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://annamariemanning.github.io/with-joy-and-vigor/">
+<meta property="og:title" content="With Joy &amp; Vigor — $30K for Pancreatic Cancer Research at Penn">
+<meta property="og:description" content="One month. All of us. For my dad, and for every family that hears this diagnosis after ours.">
+<meta property="og:image" content="https://annamariemanning.github.io/with-joy-and-vigor/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="With Joy &amp; Vigor — $30K for Pancreatic Cancer Research at Penn">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="With Joy &amp; Vigor — $30K for Pancreatic Cancer Research at Penn">
+<meta name="twitter:description" content="One month. All of us. For my dad, and for every family that hears this diagnosis after ours.">
+<meta name="twitter:image" content="https://annamariemanning.github.io/with-joy-and-vigor/og-image.png">
+
+<!-- Favicons -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF9F6;
+    --ink:#3D2645;
+    --ink-soft:#6B5478;
+    --violet:#7B3FBF;
+    --violet-deep:#5E2E93;
+    --lavender:#F1EAF8;
+    --gold:#E8A33D;
+    --gold-soft:#FBEED7;
+    --line:#E4DCEE;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'Instrument Sans',system-ui,sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 24px}
+
+  /* ---------- header ---------- */
+  header{padding:22px 0;border-bottom:1px solid var(--line)}
+  .header-row{display:flex;justify-content:space-between;align-items:center}
+  .wordmark{font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem}
+  .wordmark em{font-style:italic;color:var(--violet)}
+  .header-cta{
+    font-size:.85rem;font-weight:600;color:var(--violet-deep);text-decoration:none;
+    border:1.5px solid var(--violet);border-radius:99px;padding:7px 16px;
+    transition:background .15s,color .15s;
+  }
+  .header-cta:hover{background:var(--violet);color:#fff}
+
+  /* ---------- hero ---------- */
+  .hero{padding:68px 0 52px}
+  .eyebrow{
+    font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--violet);margin-bottom:20px;
+  }
+  h1{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(2.1rem,5.5vw,3.1rem);line-height:1.12;
+    letter-spacing:-.01em;margin-bottom:22px;
+  }
+  h1 em{font-style:italic;color:var(--violet-deep)}
+  .lede{font-size:1.1rem;color:var(--ink-soft);max-width:58ch;margin-bottom:14px}
+  .lede strong{color:var(--ink)}
+  .lede-kicker{
+    font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;
+    color:var(--ink);margin-bottom:40px;
+  }
+
+  /* ---------- progress ---------- */
+  .progress-board{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;box-shadow:0 2px 14px rgba(61,38,69,.05);
+  }
+  .progress-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .raised{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700}
+  .raised small{font-family:'Instrument Sans';font-size:.85rem;font-weight:500;color:var(--ink-soft);margin-left:7px}
+  .pct{font-size:.9rem;font-weight:600;color:var(--violet-deep)}
+  .track{position:relative;height:16px;border-radius:99px;background:var(--lavender);overflow:hidden}
+  .fill{
+    position:absolute;inset:0 auto 0 0;width:0;border-radius:99px;
+    background:linear-gradient(90deg,var(--violet-deep),var(--violet) 70%,#9B63D9);
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .fill{transition:width 1.2s cubic-bezier(.22,1,.36,1) .3s}
+  }
+  .milestones{display:flex;justify-content:space-between;margin-top:10px;font-size:.78rem;color:var(--ink-soft)}
+  .progress-caption{font-size:.86rem;color:var(--ink-soft);margin-top:14px}
+  .progress-caption strong{color:var(--violet-deep)}
+
+  .hero-ctas{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;align-items:center}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:600;font-size:1rem;
+    border-radius:99px;padding:14px 30px;transition:transform .12s,box-shadow .12s;
+  }
+  .btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .btn-primary{background:var(--violet);color:#fff;box-shadow:0 3px 12px rgba(123,63,191,.3)}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(123,63,191,.38)}
+  .countdown{font-size:.88rem;color:var(--ink-soft)}
+  .countdown strong{color:var(--ink)}
+
+  /* ---------- kärt besvär card ---------- */
+  .kart{
+    margin:60px 0 4px;background:linear-gradient(135deg,#4A2D6B,var(--violet-deep));
+    border-radius:var(--radius);padding:38px 34px;color:#F3ECFA;
+    position:relative;overflow:hidden;
+  }
+  .kart::after{
+    content:"kärt besvär";position:absolute;right:-14px;bottom:-30px;
+    font-family:'Fraunces',serif;font-style:italic;font-size:5.2rem;font-weight:600;
+    color:rgba(255,255,255,.06);white-space:nowrap;pointer-events:none;
+  }
+  .kart-term{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.9rem;margin-bottom:4px}
+  .kart-pron{font-size:.82rem;letter-spacing:.08em;color:#C9B3E8;margin-bottom:16px}
+  .kart p{font-size:1rem;max-width:54ch;position:relative;z-index:1}
+  .kart p + p{margin-top:12px}
+  .kart strong{color:#fff}
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:none}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:1.65rem;margin-bottom:20px;letter-spacing:-.01em}
+  p + p{margin-top:16px}
+  .muted{color:var(--ink-soft)}
+
+  /* ---------- then / now ---------- */
+  .then-now{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+  .tn-card{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:#fff}
+  .tn-card.now{border-color:var(--violet);background:var(--lavender)}
+  .tn-label{
+    font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:10px;
+  }
+  .tn-card.now .tn-label{color:var(--violet-deep)}
+  .tn-card ul{list-style:none}
+  .tn-card li{padding:7px 0;font-size:.93rem;border-bottom:1px solid var(--line)}
+  .tn-card li:last-child{border-bottom:none}
+  .tn-card.now li{border-color:#DCCBF0}
+  @media(max-width:560px){.then-now{grid-template-columns:1fr}}
+
+  .photo-frame{
+    background:var(--lavender);border:1px dashed var(--violet);border-radius:var(--radius);
+    height:280px;display:flex;align-items:center;justify-content:center;
+    color:var(--violet-deep);font-size:.9rem;margin:26px 0;text-align:center;padding:20px;
+  }
+  .story-placeholder{
+    background:var(--lavender);border-radius:var(--radius);padding:24px 26px;
+    font-size:.95rem;color:var(--violet-deep);
+  }
+
+  /* ---------- party ---------- */
+  .party-card{background:var(--gold-soft);border:1px solid #F0D9AE;border-radius:var(--radius);padding:32px}
+  .party-eyebrow{
+    font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:#B4761B;margin-bottom:12px;
+  }
+  .party-card h2{margin-bottom:12px}
+  .party-details{margin:18px 0 22px;font-size:.98rem}
+  .party-details div{padding:6px 0;border-bottom:1px solid #F0D9AE}
+  .party-details div:last-child{border-bottom:none}
+  .party-details strong{display:inline-block;min-width:82px}
+  .btn-gold{background:var(--gold);color:#4A3208}
+  .btn-gold:hover{transform:translateY(-1px)}
+
+  /* ---------- ways to give ---------- */
+  .give-list{list-style:none;margin-top:8px}
+  .give-list li{padding:20px 0;border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:flex-start}
+  .give-list li:last-child{border-bottom:none}
+  .give-icon{
+    flex:none;width:38px;height:38px;border-radius:50%;background:var(--lavender);
+    display:flex;align-items:center;justify-content:center;font-size:1.05rem;
+  }
+  .give-list strong{display:block;margin-bottom:2px}
+  .give-list p{font-size:.93rem;color:var(--ink-soft)}
+  .give-list a{color:var(--violet-deep);font-weight:600}
+
+  .tiers{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .tier{border:1.5px solid var(--line);border-radius:99px;padding:8px 18px;font-size:.9rem;font-weight:600;background:#fff}
+  .tier span{color:var(--ink-soft);font-weight:400}
+  .tier.custom{border-style:dashed;border-color:var(--violet)}
+  .every-dollar{
+    margin-top:18px;font-size:.95rem;color:var(--ink-soft);
+    border-left:3px solid var(--violet);padding-left:14px;
+  }
+
+  /* ---------- updates ---------- */
+  .update{padding:18px 0;border-bottom:1px solid var(--line)}
+  .update:last-child{border-bottom:none}
+  .update-date{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--violet);margin-bottom:4px}
+  .update p{font-size:.96rem}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 56px;text-align:center}
+  footer p{font-size:.85rem;color:var(--ink-soft)}
+  footer .wordmark{margin-bottom:10px;display:block}
+
+  @media(max-width:560px){
+    .hero{padding:50px 0 42px}
+    .kart{padding:30px 24px}
+    .kart::after{font-size:3.6rem}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <div class="wordmark">With Joy <em>&amp; Vigor</em></div>
+    <a class="header-cta" href="#give" id="headerDonate">Donate</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="eyebrow">August 1–31, 2026 · Penn Pancreatic Cancer Research Center</div>
+      <h1>It's time to give this diagnosis <em>hope</em>.</h1>
+      <p class="lede">In January, my dad was diagnosed with pancreatic cancer. He's being treated at Penn Medicine — and on August 15th, I turn 30. So my birthday wish is a big one: <strong>together, let's raise $30,000 for early detection and novel therapies at the Penn Pancreatic Cancer Research Center.</strong></p>
+      <p class="lede-kicker">One month. All of us. For my dad, and for every family that hears this diagnosis after ours.</p>
+
+      <div class="progress-board" aria-label="Fundraising progress">
+        <div class="progress-top">
+          <div class="raised" id="raisedAmt">$0<small>of $30,000</small></div>
+          <div class="pct" id="pct"></div>
+        </div>
+        <div class="track"><div class="fill" id="fill"></div></div>
+        <div class="milestones"><span>$0</span><span>$10K</span><span>$20K</span><span>$30K</span></div>
+        <div class="progress-caption"><strong>Every single gift moves this bar.</strong> $1 counts. Really.</div>
+      </div>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary" id="donateBtn" href="#">Give hope → Donate</a>
+        <div class="countdown" id="countdown"></div>
+      </div>
+    </div>
+
+    <!-- KÄRT BESVÄR -->
+    <div class="kart">
+      <div class="kart-term">kärt besvär</div>
+      <div class="kart-pron">Swedish · "shairt bess-vair"</div>
+      <p>The day my dad was diagnosed, he didn't talk about odds. He sent us an article about this Swedish idea and told us how we were going to do this: <strong>by living life with joy and vigor.</strong> That's what kärt besvär means to our family — living joyfully, even with a tear in your eye.</p>
+      <p>Seven months in, that's exactly what he's done — with unwavering bravery, graciousness, and, importantly, humor. This campaign runs on the same fuel.</p>
+    </div>
+
+    <!-- WHY THIS DIAGNOSIS / WHY NOW -->
+    <section id="why-now">
+      <h2>The hardest diagnosis — and why right now matters</h2>
+      <p>Pancreatic cancer is brutal for two specific, fixable reasons. It's <strong>hard to detect</strong> — there's no routine screening and symptoms stay vague, so most people are diagnosed after it has already spread. And for more than a decade, treatment options barely moved: for most patients, it has come down to <strong>two standard chemotherapy regimens</strong>.</p>
+      <p>But this year, something changed. The first RAS-targeting drug — going after the mutation that drives over 90% of pancreatic cancers, considered "undruggable" for forty years — <strong>roughly doubled survival</strong> in its phase 3 trial. My dad is waiting to receive it now. More new therapies and real early-detection science are right behind it.</p>
+      <div class="then-now">
+        <div class="tn-card">
+          <div class="tn-label">For decades</div>
+          <ul>
+            <li>No routine screening — most cases found late</li>
+            <li>Two standard chemo regimens</li>
+            <li>The driving mutation deemed "undruggable"</li>
+          </ul>
+        </div>
+        <div class="tn-card now">
+          <div class="tn-label">Right now</div>
+          <ul>
+            <li>First RAS-targeting drug doubles survival in phase 3</li>
+            <li>Immunotherapy &amp; vaccines in active trials</li>
+            <li>Early-detection research gaining real ground</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:22px">This is what a turning point looks like. Research funding is how it keeps turning — faster, and for more people.</p>
+    </section>
+
+    <!-- STORY -->
+    <section id="story">
+      <h2>About my dad</h2>
+      <div class="photo-frame">[ Photo of Dad — ideally one where he's mid-laugh ]</div>
+      <div class="story-placeholder">
+        <strong>✍️ [Sister's section]</strong> — the story goes here: who Dad is before anything else (the humor, what he loves, what he's taught us), the January diagnosis told plainly, joy-and-vigor and how he's actually living it, what his care team at Penn has meant, and why research is the thing our family can put our weight behind. Roughly 150–300 words. This block gets replaced with the real text.
+      </div>
+    </section>
+
+    <!-- WHY PENN -->
+    <section id="why">
+      <h2>Where every dollar goes</h2>
+      <p>Every dollar goes directly to the University of Pennsylvania, designated for the <strong>Penn Pancreatic Cancer Research Center</strong> — the team treating my dad, and one of the country's leading centers for pancreatic cancer research. Its director, Dr. Robert Vonderheide, has pioneered immunotherapy approaches for pancreatic cancer now in later-stage clinical trials.</p>
+      <p>We're directing this campaign toward the two things that change the story of this disease: <strong>early detection</strong>, so more families catch it when it's most treatable, and <strong>novel therapies</strong> that push the boundaries of a historically stubborn cancer. Penn's PCRC leads in both.</p>
+      <p class="muted">Donations go straight to Penn, a 501(c)(3) — they're tax-deductible, you'll receive a receipt from Penn, and nothing passes through us.</p>
+    </section>
+
+    <!-- PARTY -->
+    <section id="party">
+      <div class="party-card">
+        <div class="party-eyebrow">🎂 August 15 · The big 3-0</div>
+        <h2>Come celebrate with us</h2>
+        <p>My 30th birthday lands right in the middle of the campaign — so we're throwing a party, and the bar is in on it: a portion of the night's proceeds goes straight to the goal. Joy and vigor, in practice.</p>
+        <div class="party-details">
+          <div><strong>When</strong> Friday, August 15 · [TIME]</div>
+          <div><strong>Where</strong> [BAR NAME], [NEIGHBORHOOD]</div>
+          <div><strong>Gifts</strong> None needed — just come.</div>
+        </div>
+        <a class="btn btn-gold" href="#" id="rsvpBtn">RSVP on Partiful</a>
+      </div>
+    </section>
+
+    <!-- WAYS TO GIVE -->
+    <section id="give">
+      <h2>Ways to give</h2>
+      <ul class="give-list">
+        <li>
+          <div class="give-icon">💜</div>
+          <div><strong>Give online</strong>
+          <p>The fastest way — direct to Penn through our official giving page. <a href="#" class="donate-link">Donate now</a></p></div>
+        </li>
+        <li>
+          <div class="give-icon">✕2</div>
+          <div><strong>Double it with employer matching</strong>
+          <p>Many companies match charitable gifts — a two-minute form can double what you give. Designation: [FUND # — TBD].</p></div>
+        </li>
+        <li>
+          <div class="give-icon">✉️</div>
+          <div><strong>Give by check</strong>
+          <p>Payable to <em>Trustees of the University of Pennsylvania</em>, memo line: [FUND DESIGNATION — TBD].</p></div>
+        </li>
+      </ul>
+      <div class="tiers">
+        <div class="tier">$10</div>
+        <div class="tier">$30 <span>· for 30 years</span></div>
+        <div class="tier">$100</div>
+        <div class="tier custom">Any amount you choose</div>
+      </div>
+      <p class="every-dollar">There's no minimum and no expectation. A dollar, a coffee's worth, whatever feels right — what matters is that you're in this with us. The number on the bar is really a count of people who showed up.</p>
+    </section>
+
+    <!-- UPDATES -->
+    <section id="updates">
+      <h2>Updates</h2>
+      <div id="updateFeed"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="wordmark">With Joy <em style="color:var(--violet)">&amp; Vigor</em></span>
+    <p>A family campaign benefiting the Penn Pancreatic Cancer Research Center · August 2026<br>Questions? [EMAIL — TBD]</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CAMPAIGN DATA lives in campaign.json — that file is the only
+   thing you edit during August. Change `raised`, commit, done.
+   Everything below recalculates from it.
+
+   DEFAULTS is the safety net: if campaign.json ever fails to
+   load, the page still renders with these values.
+   ============================================================ */
+const DEFAULTS = {
+  goal: 30000,
+  raised: 8500,
+  donateUrl: "#",
+  rsvpUrl: "#",
+  campaignEnd: "2026-08-31T23:59:59-04:00",
+  partyDate:   "2026-08-15T19:00:00-04:00",
+  updates: [
+    { date: "Aug 1",  text: "We're live. Day one, and you're already showing up — thank you." },
+    { date: "Jul 28", text: "Page preview — campaign launches August 1. [sample update, replace]" }
+  ]
+};
+
+function render(CONFIG) {
+  /* ---------- progress ---------- */
+  const pctVal = Math.min(100, (CONFIG.raised / CONFIG.goal) * 100);
+  const fmt = n => '$' + n.toLocaleString('en-US');
+  document.getElementById('raisedAmt').innerHTML =
+    fmt(CONFIG.raised) + '<small>of ' + fmt(CONFIG.goal) + '</small>';
+  document.getElementById('pct').textContent = Math.round(pctVal) + '% of the way there';
+  requestAnimationFrame(() => {
+    document.getElementById('fill').style.width = pctVal + '%';
+  });
+
+  /* ---------- countdown ---------- */
+  const now = new Date();
+  const end = new Date(CONFIG.campaignEnd);
+  const party = new Date(CONFIG.partyDate);
+  const days = d => Math.max(0, Math.ceil((d - now) / 86400000));
+  let cd = '';
+  if (now < party)      cd = '<strong>' + days(party) + ' days</strong> until the party · <strong>' + days(end) + ' days</strong> left in the campaign';
+  else if (now < end)   cd = '<strong>' + days(end) + ' days</strong> left in the campaign';
+  else                  cd = 'Campaign complete — thank you 💜';
+  document.getElementById('countdown').innerHTML = cd;
+
+  /* ---------- links ---------- */
+  document.querySelectorAll('#donateBtn, #headerDonate, .donate-link')
+    .forEach(a => { if (CONFIG.donateUrl !== '#') a.href = CONFIG.donateUrl; });
+  if (CONFIG.rsvpUrl !== '#') document.getElementById('rsvpBtn').href = CONFIG.rsvpUrl;
+
+  /* ---------- updates feed ---------- */
+  document.getElementById('updateFeed').innerHTML = CONFIG.updates.map(u =>
+    '<div class="update"><div class="update-date">' + u.date + '</div><p>' + u.text + '</p></div>'
+  ).join('');
+}
+
+/* Load campaign.json; fall back to DEFAULTS if it's missing or broken. */
+fetch('campaign.json', { cache: 'no-store' })
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    const cfg = Object.assign({}, DEFAULTS, data);
+    if (!Array.isArray(cfg.updates)) cfg.updates = DEFAULTS.updates;
+    if (typeof cfg.raised !== 'number' || !isFinite(cfg.raised)) cfg.raised = DEFAULTS.raised;
+    if (typeof cfg.goal !== 'number' || !(cfg.goal > 0)) cfg.goal = DEFAULTS.goal;
+    render(cfg);
+  })
+  .catch(() => render(DEFAULTS));
+</script>
+</body>
+</html>
