@@ -12,21 +12,20 @@ Everything you'd want to change during the campaign lives in **one file: `campai
 
 You can do this entirely in a web browser (Safari/Chrome on your phone works fine).
 
-### Update the amount raised
+### The amount raised updates itself — automatically 🎉
 
-1. Go to **github.com/annamariemanning/with-joy-and-vigor** and log in.
-2. Tap the file **`campaign.json`**.
-3. Tap the **pencil icon** (✏️, "Edit this file"). On a phone it may be hidden behind the **`⋯`** menu at the top right of the file.
-4. Find the line that says:
-   ```
-   "raised": 8500,
-   ```
-   Change the number to the new total. **Numbers only — no dollar sign, no commas.** For example, if you've raised $12,340:
-   ```
-   "raised": 12340,
-   ```
-5. Scroll down and tap the green **"Commit changes"** button (you can leave the message it suggests).
-6. Done. The live site updates itself in about a minute. Refresh the page to see the new bar.
+You do **not** need to edit the raised number by hand. A scheduled task (a "GitHub Action") checks your Penn campaign page — **givingpages.upenn.edu/30for30** — about every 30 minutes and copies the live total into the site for you. Every online gift is automatically reflected on the bar within roughly half an hour.
+
+- **Want to refresh it right now** instead of waiting? On a computer, go to the repo → **Actions** tab → **Update donation total** → **Run workflow**. (There's also a "Run workflow" button in the GitHub mobile app under Actions.)
+- **Leave the `"raised"` line alone.** The task overwrites it each run, so hand-edits won't stick.
+
+### Counting checks or employer matches (gifts not made on the page)
+
+Some gifts — mailed checks, employer matches — may not appear on the Penn page's online total. To include them, edit this one line in `campaign.json`:
+```
+"offlineGifts": 0,
+```
+Change `0` to the dollar total of those off-page gifts (numbers only). The task **adds** that to the Penn online total, so the bar shows everything. This line is yours — the task never overwrites it.
 
 ### Post an update to the "Updates" section
 

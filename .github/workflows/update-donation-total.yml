@@ -1,0 +1,79 @@
+name: Update donation total
+
+# Pulls the live raised amount from the Penn campaign page and writes it into
+# campaign.json, which updates the website. Runs on a schedule, and can also be
+# run on demand from the Actions tab (the "Run workflow" button).
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # about every 30 minutes (GitHub may delay/skip under load)
+  workflow_dispatch: {}       # manual "Run workflow" button
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-donation-total
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read total from Penn page and update campaign.json
+        run: |
+          python3 - <<'PY'
+          import re, sys, urllib.request
+
+          URL = ("https://socialfundraising.apps.upenn.edu/socialFundraising/jsp/"
+                 "fast.do?fastStart=customTemplateByNameOrId&customApplicationNameOrId=30for30")
+
+          # 1) Fetch the campaign page. On any failure, leave the file untouched.
+          try:
+              req = urllib.request.Request(URL, headers={"User-Agent": "Mozilla/5.0 (donation-total-bot)"})
+              html = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
+          except Exception as e:
+              print("Fetch failed, keeping last value:", e)
+              sys.exit(0)
+
+          # 2) The page embeds progress gauges as image URLs carrying the numbers.
+          #    Pick the one whose goal is 30000 (the main campaign).
+          gauges = re.findall(r"progressGauge&id=\d+&goalNumber=([\d.]+)&progressNumber=([\d.]+)", html)
+          main = [g for g in gauges if abs(float(g[0]) - 30000) < 1]
+          if not main:
+              print("Campaign gauge not found, keeping last value.")
+              sys.exit(0)
+
+          penn_total = int(round(float(main[0][1])))
+
+          # 3) Update only the "raised" number, preserving all other formatting.
+          #    raised = Penn online total + any offline gifts you record manually.
+          content = open("campaign.json").read()
+          offline_m = re.search(r'"offlineGifts"\s*:\s*(\d+)', content)
+          offline = int(offline_m.group(1)) if offline_m else 0
+          raised = penn_total + offline
+
+          cur_m = re.search(r'"raised"\s*:\s*(\d+)', content)
+          current = int(cur_m.group(1)) if cur_m else None
+          if current == raised:
+              print("Unchanged:", raised)
+              sys.exit(0)
+
+          new_content = re.sub(r'("raised"\s*:\s*)\d+', lambda m: m.group(1) + str(raised), content, count=1)
+          open("campaign.json", "w").write(new_content)
+          print(f"Updated raised -> {raised}  (Penn {penn_total} + offline {offline})")
+          PY
+
+      - name: Commit if changed
+        run: |
+          if [[ -n "$(git status --porcelain campaign.json)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add campaign.json
+            git commit -m "Auto-update donation total from Penn page"
+            git push
+          else
+            echo "No change to commit."
+          fi
