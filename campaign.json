@@ -8,9 +8,5 @@
   "updates": [
     { "date": "Aug 1", "text": "We're live. Day one, and you're already showing up. Thank you." },
     { "date": "Jul 28", "text": "Page preview — campaign launches August 1. [sample update, replace]" }
-  ],
-  "photos": [
-    { "src": "photos/beach.jpg",  "alt": "The family in white for a portrait at the beach" },
-    { "src": "photos/garden.jpg", "alt": "Dad and his young daughter in the vegetable garden" }
   ]
 }

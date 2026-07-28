@@ -56,22 +56,6 @@ When your Partiful invite exists, replace the `"#"` on the `rsvpUrl` line with t
 
 Once it's set, the "RSVP on Partiful" button points to it automatically (and opens in a new tab). Until then, that button stays inert on purpose.
 
-### Change the photo slideshow
-
-The photos live in the `photos/` folder, and their order is set by the `"photos"` list in `campaign.json`.
-
-**To reorder or remove a photo:** edit the `"photos"` list — drag lines to reorder, or delete a line to remove that photo. (Deleting the line does not delete the image file, and that's fine.)
-
-**To add a new photo:**
-1. Get the image onto the repo. On a computer this is easiest: go to the `photos` folder on GitHub, tap **Add file → Upload files**, and drop the image in. Use a simple filename with no spaces, like `birthday.jpg`. (JPG or PNG — if it's a HEIC from an iPhone, it's best to convert to JPG first; texting the photo to yourself and saving it usually does that.)
-2. Add a line to the `"photos"` list in `campaign.json` pointing at it:
-   ```
-   { "src": "photos/birthday.jpg", "alt": "Short description of the photo" }
-   ```
-   The `alt` text is a short description used for accessibility — it isn't shown on the page.
-
-The slideshow shows every photo in the list, full and uncropped, with a soft blurred fill behind. If the list is ever empty, it politely shows "Photos coming soon" instead of breaking.
-
 ### The three rules that keep the file happy
 
 - **Keep all the quotes and commas exactly as they are** — JSON is picky.

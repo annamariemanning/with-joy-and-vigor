@@ -215,34 +215,6 @@
     border-left:3px solid var(--violet);padding-left:14px;
   }
 
-  /* ---------- gallery / slideshow ---------- */
-  .carousel{position:relative;margin-top:4px}
-  .car-viewport{overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);background:var(--lavender)}
-  .slides{display:flex}
-  @media (prefers-reduced-motion:no-preference){
-    .slides{transition:transform .55s cubic-bezier(.22,1,.36,1)}
-  }
-  .slide{flex:0 0 100%;position:relative;aspect-ratio:3/2;overflow:hidden;background:var(--lavender)}
-  .slide .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(22px) brightness(.9);transform:scale(1.18)}
-  .slide img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
-  .slide.placeholder{
-    display:flex;align-items:center;justify-content:center;
-    color:var(--violet-deep);text-align:center;padding:24px;font-size:.95rem;
-  }
-  .car-btn{
-    position:absolute;top:calc(50% - 20px);z-index:2;width:40px;height:40px;
-    border:none;border-radius:50%;cursor:pointer;background:rgba(255,255,255,.92);
-    color:var(--violet-deep);font-size:1.5rem;line-height:1;
-    box-shadow:0 2px 10px rgba(61,38,69,.18);
-  }
-  .car-btn:hover{background:#fff}
-  .car-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-  .car-btn.prev{left:12px}
-  .car-btn.next{right:12px}
-  .dots{display:flex;gap:9px;justify-content:center;margin-top:14px}
-  .dot{width:8px;height:8px;padding:0;border:none;border-radius:50%;background:var(--line);cursor:pointer}
-  .dot.active{background:var(--violet)}
-
   /* ---------- updates ---------- */
   .update{padding:18px 0;border-bottom:1px solid var(--line)}
   .update:last-child{border-bottom:none}
@@ -317,16 +289,6 @@
       <p>Every dollar goes directly to the University of Pennsylvania, designated for the <strong>Cure Pancreatic Cancer Fund</strong> within Penn's Pancreatic Cancer Research Center, the team treating my dad and one of the country's leading centers for pancreatic cancer research. Its director, Dr. Robert Vonderheide, has pioneered immunotherapy approaches for pancreatic cancer now in later-stage clinical trials.</p>
       <p>We're directing this campaign toward the two things that change the story of this disease: <strong>early detection</strong>, so more families catch it when it's most treatable, and <strong>novel therapies</strong> that push the boundaries of a historically stubborn cancer. Penn's PCRC leads in both.</p>
       <p class="muted">Donations go straight to Penn, a 501(c)(3). They're tax-deductible, you'll receive a receipt from Penn, and nothing passes through us.</p>
-    </section>
-
-    <!-- GALLERY / SLIDESHOW -->
-    <section id="gallery">
-      <div class="carousel" id="carousel">
-        <div class="car-viewport"><div class="slides" id="slides"></div></div>
-        <button class="car-btn prev" id="carPrev" aria-label="Previous photo">&#8249;</button>
-        <button class="car-btn next" id="carNext" aria-label="Next photo">&#8250;</button>
-        <div class="dots" id="dots"></div>
-      </div>
     </section>
 
     <!-- PARTY -->
@@ -416,10 +378,6 @@ const DEFAULTS = {
   updates: [
     { date: "Aug 1",  text: "We're live. Day one, and you're already showing up. Thank you." },
     { date: "Jul 28", text: "Page preview — campaign launches August 1. [sample update, replace]" }
-  ],
-  photos: [
-    { src: "photos/beach.jpg",  alt: "The family in white for a portrait at the beach" },
-    { src: "photos/garden.jpg", alt: "Dad and his young daughter in the vegetable garden" }
   ]
 };
 
@@ -454,87 +412,6 @@ function render(CONFIG) {
   document.getElementById('updateFeed').innerHTML = CONFIG.updates.map(u =>
     '<div class="update"><div class="update-date">' + u.date + '</div><p>' + u.text + '</p></div>'
   ).join('');
-
-  /* ---------- photo slideshow ---------- */
-  renderGallery(CONFIG.photos);
-}
-
-function renderGallery(photos) {
-  const slidesEl = document.getElementById('slides');
-  const dotsEl   = document.getElementById('dots');
-  const prev     = document.getElementById('carPrev');
-  const next     = document.getElementById('carNext');
-  const carousel = document.getElementById('carousel');
-  const list = Array.isArray(photos) ? photos.filter(p => p && p.src) : [];
-
-  slidesEl.innerHTML = '';
-  dotsEl.innerHTML = '';
-
-  if (!list.length) {
-    const ph = document.createElement('div');
-    ph.className = 'slide placeholder';
-    ph.textContent = 'Photos coming soon 💜';
-    slidesEl.appendChild(ph);
-    prev.style.display = next.style.display = 'none';
-    return;
-  }
-
-  list.forEach((p, i) => {
-    const slide = document.createElement('div');
-    slide.className = 'slide';
-    const bg = document.createElement('div');
-    bg.className = 'bg';
-    bg.style.backgroundImage = 'url("' + encodeURI(p.src) + '")';
-    const img = document.createElement('img');
-    img.src = p.src;
-    img.alt = p.alt || 'Campaign photo';
-    img.loading = 'lazy';
-    slide.appendChild(bg);
-    slide.appendChild(img);
-    slidesEl.appendChild(slide);
-
-    const dot = document.createElement('button');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
-    dot.addEventListener('click', () => show(i));
-    dotsEl.appendChild(dot);
-  });
-
-  let idx = 0;
-  const single = list.length < 2;
-  prev.style.display = next.style.display = single ? 'none' : '';
-  dotsEl.style.display = single ? 'none' : '';
-
-  function show(n) {
-    idx = (n + list.length) % list.length;
-    slidesEl.style.transform = 'translateX(' + (-idx * 100) + '%)';
-    [...dotsEl.children].forEach((d, i) => d.classList.toggle('active', i === idx));
-  }
-
-  prev.addEventListener('click', () => { show(idx - 1); rearm(); });
-  next.addEventListener('click', () => { show(idx + 1); rearm(); });
-
-  /* swipe on touch devices */
-  let x0 = null;
-  const vp = slidesEl.parentElement;
-  vp.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
-  vp.addEventListener('touchend', e => {
-    if (x0 === null) return;
-    const dx = e.changedTouches[0].clientX - x0;
-    if (Math.abs(dx) > 40) { show(idx + (dx < 0 ? 1 : -1)); rearm(); }
-    x0 = null;
-  }, { passive: true });
-
-  /* gentle autoplay — off for reduced-motion, pauses on hover */
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let timer = null;
-  function play() { if (reduce || single) return; timer = setInterval(() => show(idx + 1), 6000); }
-  function stop() { if (timer) { clearInterval(timer); timer = null; } }
-  function rearm() { stop(); play(); }
-  carousel.addEventListener('mouseenter', stop);
-  carousel.addEventListener('mouseleave', play);
-  show(0);
-  play();
 }
 
 /* Load campaign.json; fall back to DEFAULTS if it's missing or broken. */
@@ -546,7 +423,6 @@ fetch('campaign.json', { cache: 'no-store' })
     if (typeof cfg.raised !== 'number' || !isFinite(cfg.raised)) cfg.raised = DEFAULTS.raised;
     if (typeof cfg.goal !== 'number' || !(cfg.goal > 0)) cfg.goal = DEFAULTS.goal;
     if (typeof cfg.donateUrl !== 'string' || !cfg.donateUrl) cfg.donateUrl = DEFAULTS.donateUrl;
-    if (!Array.isArray(cfg.photos)) cfg.photos = DEFAULTS.photos;
     render(cfg);
   })
   .catch(() => render(DEFAULTS));
