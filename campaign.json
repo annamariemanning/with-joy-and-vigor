@@ -1,7 +1,8 @@
 {
   "goal": 30000,
   "raised": 0,
-  "donateUrl": "https://giving.apps.upenn.edu/fund?program=MED&fund=605991",
+  "offlineGifts": 0,
+  "donateUrl": "https://givingpages.upenn.edu/30for30",
   "rsvpUrl": "#",
   "campaignEnd": "2026-08-31T23:59:59-04:00",
   "partyDate": "2026-08-15T19:00:00-04:00",
