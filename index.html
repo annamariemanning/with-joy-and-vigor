@@ -153,6 +153,20 @@
     padding:2px 10px;border-radius:6px;
   }
 
+  /* ---------- meaning / the name ---------- */
+  .meaning{
+    margin:8px 0 6px;
+    background:linear-gradient(135deg,#EFE4F9,#F7F0FC);
+    border:1px solid #E3D5F1;
+    border-radius:18px;padding:38px 34px;color:var(--ink);
+    position:relative;overflow:hidden;
+  }
+  .meaning h2{color:var(--violet-deep);font-size:1.5rem;margin-bottom:16px}
+  .meaning h2 em{font-style:italic;color:var(--violet)}
+  .meaning p{font-size:1.05rem;line-height:1.72;max-width:58ch}
+  .meaning .jv{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--violet-deep)}
+  @media(max-width:560px){.meaning{padding:30px 24px}}
+
   /* ---------- sections ---------- */
   section{padding:30px 0 54px;position:relative}
   section::before{
@@ -283,6 +297,12 @@
       <p>Through all of this, my dad's philosophy has been to make it to the next milestone in pancreatic cancer research. Daraxonrasib is the first one. It is not a cure, but it brings him, and so many others, one step closer to the therapies coming right behind it. The hope is to extend patients' lives long enough to find a cure. Your support would be behind this mission.</p>
     </section>
 
+    <!-- WHAT IT MEANS -->
+    <div class="meaning">
+      <h2>What <em>"with joy and vigor"</em> means</h2>
+      <p>The day my dad was diagnosed, he told us what he wanted most: that his four daughters live our lives <span class="jv">with joy and vigor</span> — the way he's raised us to. That has stayed with me ever since. It's how he's carried himself through all of this, and it's the spirit this whole campaign is built on.</p>
+    </div>
+
     <!-- WHY PENN -->
     <section id="why">
       <h2>Where every dollar goes</h2>
@@ -300,7 +320,7 @@
         <div class="party-details">
           <div><strong>When</strong> TBD</div>
           <div><strong>Where</strong> TBD</div>
-          <div><strong>Gifts</strong> None needed. Just come.</div>
+          <div><strong>Gifts</strong> <a href="#give" style="color:#B4761B;font-weight:600">See ways to give below</a>.</div>
         </div>
         <a class="btn btn-gold" href="#" id="rsvpBtn" target="_blank" rel="noopener">RSVP on Partiful</a>
       </div>
