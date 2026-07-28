@@ -44,16 +44,17 @@ You can do this entirely in a web browser (Safari/Chrome on your phone works fin
    ```
 4. Commit changes, same as above.
 
-### Add the real donate & RSVP links (one-time)
+### Add the RSVP link when the party invite is ready (one-time)
 
-In the same file, replace the `"#"` with the real links, keeping the quotes:
+The donate link is already set and live — every Donate button points to Penn's official giving page and opens in a new tab. You don't need to touch it.
+
+When your Partiful invite exists, replace the `"#"` on the `rsvpUrl` line with the real link, keeping the quotes:
 
 ```
-"donateUrl": "https://giving.apps.upenn.edu/...",
 "rsvpUrl": "https://partiful.com/e/...",
 ```
 
-Once these are set, every Donate button and the RSVP button on the site point to them automatically.
+Once it's set, the "RSVP on Partiful" button points to it automatically (and opens in a new tab). Until then, that button stays inert on purpose.
 
 ### The three rules that keep the file happy
 
@@ -67,14 +68,13 @@ If you ever commit a typo and the file breaks, don't panic: **the site does not 
 
 ## What's still placeholder (for a later session)
 
-- `donateUrl` — Penn giving page link (in `campaign.json`)
 - `rsvpUrl` — Partiful link (in `campaign.json`)
-- Bar name / time for the party (in `index.html`, "Come celebrate with us" section)
-- Fund designation numbers (in `index.html`, "Ways to give" section)
-- Photo of Dad (in `index.html`, the dashed photo frame)
-- **[Sister's section]** story block (in `index.html`)
-- Contact email in the footer (in `index.html`)
-- `og-image.png` — currently a simple purple placeholder card; swap in a real 1200×630 photo card later (keep the same filename and nothing else needs to change)
+- Party time — the `[TIME]` in `index.html`, "Come celebrate with us" section
+- Bar name / neighborhood — the `[BAR NAME], [NEIGHBORHOOD]` in `index.html`, same section
+- Contact email in the footer — the `[EMAIL — TBD]` in `index.html`
+- `og-image.png` — the sharing-preview card; fine as is, but you can swap in a photo version later (keep the same 1200×630 filename and nothing else needs to change)
+
+Everything else — the donate link, fund numbers, all copy — is final.
 
 ## Tech notes
 
