@@ -1,12 +1,13 @@
 name: Update donation total
 
-# Pulls the live raised amount from the Penn campaign page and writes it into
-# campaign.json, which updates the website. Runs on a schedule, and can also be
-# run on demand from the Actions tab (the "Run workflow" button).
+# BACKUP ONLY. The website now reads the live total in real time from a
+# Cloudflare Worker. This job just refreshes the fallback number in
+# campaign.json occasionally, in case the Worker is ever briefly unreachable.
+# Can also be run on demand from the Actions tab (the "Run workflow" button).
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # about every 15 minutes (GitHub may delay/skip under load)
+    - cron: "23 * * * *"     # ~hourly, backup only (GitHub scheduling is best-effort)
   workflow_dispatch: {}       # manual "Run workflow" button
 
 permissions:

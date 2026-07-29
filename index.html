@@ -445,18 +445,34 @@ function render(CONFIG) {
   ).join('');
 }
 
-/* Load campaign.json; fall back to DEFAULTS if it's missing or broken. */
-fetch('campaign.json', { cache: 'no-store' })
+/* The live donation total comes from a Cloudflare Worker that reads Penn's page
+   in real time. campaign.json supplies everything else (goal, updates, links,
+   offlineGifts). Both have safety nets so the page always renders. */
+const LIVE_TOTAL_URL = 'https://with-joy-and-vigor.annamariemanning2.workers.dev/';
+
+const configP = fetch('campaign.json', { cache: 'no-store' })
   .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-  .then(data => {
-    const cfg = Object.assign({}, DEFAULTS, data);
-    if (!Array.isArray(cfg.updates)) cfg.updates = DEFAULTS.updates;
-    if (typeof cfg.raised !== 'number' || !isFinite(cfg.raised)) cfg.raised = DEFAULTS.raised;
-    if (typeof cfg.goal !== 'number' || !(cfg.goal > 0)) cfg.goal = DEFAULTS.goal;
-    if (typeof cfg.donateUrl !== 'string' || !cfg.donateUrl) cfg.donateUrl = DEFAULTS.donateUrl;
-    render(cfg);
-  })
-  .catch(() => render(DEFAULTS));
+  .catch(() => ({}));
+
+const liveP = fetch(LIVE_TOTAL_URL, { cache: 'no-store' })
+  .then(r => (r.ok ? r.json() : null))
+  .catch(() => null);
+
+Promise.all([configP, liveP]).then(([data, live]) => {
+  const cfg = Object.assign({}, DEFAULTS, data);
+  if (!Array.isArray(cfg.updates)) cfg.updates = DEFAULTS.updates;
+  if (typeof cfg.goal !== 'number' || !(cfg.goal > 0)) cfg.goal = DEFAULTS.goal;
+  if (typeof cfg.donateUrl !== 'string' || !cfg.donateUrl) cfg.donateUrl = DEFAULTS.donateUrl;
+  const offline = (typeof cfg.offlineGifts === 'number' && isFinite(cfg.offlineGifts)) ? cfg.offlineGifts : 0;
+
+  if (live && typeof live.raised === 'number' && isFinite(live.raised)) {
+    cfg.raised = live.raised + offline;                 // live total (primary)
+  } else if (typeof cfg.raised !== 'number' || !isFinite(cfg.raised)) {
+    cfg.raised = DEFAULTS.raised;                        // last resort
+  }                                                      // else: keep last-known campaign.json value
+
+  render(cfg);
+});
 </script>
 </body>
 </html>
