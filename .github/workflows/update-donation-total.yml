@@ -6,7 +6,7 @@ name: Update donation total
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # about every 30 minutes (GitHub may delay/skip under load)
+    - cron: "*/15 * * * *"   # about every 15 minutes (GitHub may delay/skip under load)
   workflow_dispatch: {}       # manual "Run workflow" button
 
 permissions:
