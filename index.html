@@ -322,21 +322,6 @@
       <p class="muted">Donations go straight to Penn, a 501(c)(3). They're tax-deductible, you'll receive a receipt from Penn, and nothing passes through us.</p>
     </section>
 
-    <!-- PARTY -->
-    <section id="party">
-      <div class="party-card">
-        <div class="party-eyebrow">🎂 August 15 · The big 3-0</div>
-        <h2>Come celebrate with us</h2>
-        <p>My 30th birthday lands right in the middle of the campaign, so we're throwing a party.</p>
-        <div class="party-details">
-          <div><strong>When</strong> TBD</div>
-          <div><strong>Where</strong> TBD</div>
-          <div><strong>Gifts</strong> <a href="#give" style="color:#B4761B;font-weight:600">See ways to give below</a>.</div>
-        </div>
-        <a class="btn btn-gold" href="#" id="rsvpBtn" target="_blank" rel="noopener">RSVP on Partiful</a>
-      </div>
-    </section>
-
     <!-- WAYS TO GIVE -->
     <section id="give">
       <h2>Ways to give</h2>
@@ -429,15 +414,14 @@ function render(CONFIG) {
   const party = new Date(CONFIG.partyDate);
   const days = d => Math.max(0, Math.ceil((d - now) / 86400000));
   let cd = '';
-  if (now < party)      cd = '<strong>' + days(party) + ' days</strong> until the party · <strong>' + days(end) + ' days</strong> left in the campaign';
-  else if (now < end)   cd = '<strong>' + days(end) + ' days</strong> left in the campaign';
+  if (now < end)        cd = '<strong>' + days(end) + ' days</strong> left in the campaign';
   else                  cd = 'Campaign complete. Thank you <svg width="15" height="19" viewBox="0 0 46 60" aria-hidden="true" style="vertical-align:middle;position:relative;top:-2px"><path d="M8 24 C8 9 15 5 23 5 C31 5 38 9 38 24 C33 21 28 26 23 23 C18 26 13 21 8 24 Z" fill="#B08BE0" opacity=".75"/><path d="M13 27 q-3 8 1 14 q3 6 0 12" stroke="#9B63D9" stroke-width="2.6" stroke-linecap="round" fill="none"/><path d="M23 28 q3 8 -1 14 q-3 6 1 13" stroke="#7B3FBF" stroke-width="2.6" stroke-linecap="round" fill="none"/><path d="M33 27 q3 8 -1 13 q-3 6 0 12" stroke="#9B63D9" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>';
   document.getElementById('countdown').innerHTML = cd;
 
   /* ---------- links ---------- */
   document.querySelectorAll('#donateBtn, #headerDonate, .donate-link')
     .forEach(a => { if (CONFIG.donateUrl !== '#') { a.href = CONFIG.donateUrl; a.target = '_blank'; a.rel = 'noopener'; } });
-  if (CONFIG.rsvpUrl !== '#') { const r = document.getElementById('rsvpBtn'); r.href = CONFIG.rsvpUrl; r.target = '_blank'; r.rel = 'noopener'; }
+  if (CONFIG.rsvpUrl !== '#') { const r = document.getElementById('rsvpBtn'); if (r) { r.href = CONFIG.rsvpUrl; r.target = '_blank'; r.rel = 'noopener'; } }
 
   /* ---------- updates feed ---------- */
   document.getElementById('updateFeed').innerHTML = CONFIG.updates.map(u =>
