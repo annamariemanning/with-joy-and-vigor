@@ -131,7 +131,12 @@
   @media (prefers-reduced-motion:no-preference){
     .fill{transition:width 1.2s cubic-bezier(.22,1,.36,1) .3s}
   }
-  .milestones{display:flex;justify-content:space-between;margin-top:10px;font-size:.78rem;color:var(--ink-soft)}
+  .goal-tick{position:absolute;top:0;bottom:0;width:2px;background:rgba(255,255,255,.8);border-radius:2px}
+  .milestones{position:relative;height:1.1em;margin-top:10px;font-size:.78rem;color:var(--ink-soft)}
+  .milestones span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+  .milestones span:first-child{transform:none;left:0}
+  .milestones span:last-child{transform:translateX(-100%)}
+  .milestones .orig-goal{color:var(--violet-deep);font-weight:600}
   .progress-caption{font-size:.86rem;color:var(--ink-soft);margin-top:14px}
   .progress-caption strong{color:var(--violet-deep)}
 
@@ -287,8 +292,12 @@
           <div class="raised" id="raisedAmt">$0<small>of $30,000</small></div>
           <div class="pct" id="pct"></div>
         </div>
-        <div class="track"><div class="fill" id="fill"></div></div>
-        <div class="milestones"><span>$0</span><span>$10K</span><span>$20K</span><span>$30K</span></div>
+        <div class="track"><div class="fill" id="fill"></div><span class="goal-tick" style="left:42.86%"></span></div>
+        <div class="milestones">
+          <span style="left:0">$0</span>
+          <span class="orig-goal" style="left:42.86%">$30K goal</span>
+          <span style="left:100%">$70K</span>
+        </div>
         <div class="progress-caption"><strong>Every single gift moves this bar.</strong> $1 counts. Really.</div>
       </div>
 
@@ -386,6 +395,7 @@
    ============================================================ */
 const DEFAULTS = {
   goal: 30000,
+  barMax: 70000,
   raised: 0,
   donateUrl: "https://givingpages.upenn.edu/30for30",
   rsvpUrl: "#",
@@ -398,13 +408,19 @@ const DEFAULTS = {
 
 function render(CONFIG) {
   /* ---------- progress ---------- */
-  const pctVal = Math.min(100, (CONFIG.raised / CONFIG.goal) * 100);
   const fmt = n => '$' + n.toLocaleString('en-US');
+  // The bar is scaled to barMax (a bigger number) so it doesn't look maxed out,
+  // but $30,000 stays the real campaign goal in the text and as a marker.
+  const barMax = (typeof CONFIG.barMax === 'number' && CONFIG.barMax > CONFIG.goal) ? CONFIG.barMax : CONFIG.goal;
+  const fillPct = Math.min(100, (CONFIG.raised / barMax) * 100);
+  const reachedGoal = CONFIG.raised >= CONFIG.goal;
   document.getElementById('raisedAmt').innerHTML =
-    fmt(CONFIG.raised) + '<small>of ' + fmt(CONFIG.goal) + '</small>';
-  document.getElementById('pct').textContent = Math.round(pctVal) + '% of the way there';
+    fmt(CONFIG.raised) + '<small>' + (reachedGoal ? 'raised so far' : 'of ' + fmt(CONFIG.goal)) + '</small>';
+  document.getElementById('pct').textContent = reachedGoal
+    ? 'past our ' + fmt(CONFIG.goal) + ' goal'
+    : Math.round((CONFIG.raised / CONFIG.goal) * 100) + '% of the way there';
   requestAnimationFrame(() => {
-    document.getElementById('fill').style.width = pctVal + '%';
+    document.getElementById('fill').style.width = fillPct + '%';
   });
 
   /* ---------- countdown ---------- */
