@@ -1,14 +1,12 @@
 name: Update donation total
 
-# BACKUP ONLY. The website now reads the live total in real time from a
-# Cloudflare Worker. This job just refreshes the fallback number in
-# campaign.json occasionally, in case the Worker is ever briefly unreachable.
-# Can also be run on demand from the Actions tab (the "Run workflow" button).
+# MANUAL BACKUP ONLY. The website reads the live total in real time from a
+# Cloudflare Worker, so this no longer runs on a schedule (that was generating
+# noisy "cancelled" emails). Run it by hand from the Actions tab any time you
+# want to refresh the fallback number in campaign.json.
 
 on:
-  schedule:
-    - cron: "23 * * * *"     # ~hourly, backup only (GitHub scheduling is best-effort)
-  workflow_dispatch: {}       # manual "Run workflow" button
+  workflow_dispatch: {}       # manual "Run workflow" button only
 
 permissions:
   contents: write
